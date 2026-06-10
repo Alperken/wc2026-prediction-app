@@ -28,7 +28,6 @@ export default function Leaderboard() {
     return onSnapshot(collection(db, "users"), (snap) => {
       const list = snap.docs
         .map((d) => ({ id: d.id, ...d.data() }))
-        .filter((u) => u.role !== "admin" || u.showOnLeaderboard)
         .sort((a, b) => (b.points || 0) - (a.points || 0));
       setUsers(list);
       setLoading(false);
